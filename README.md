@@ -19,7 +19,7 @@ With a healthy Go Language installed, simply run `go get github.com/landonia/goc
 
 ## Run
 
-### Program parameters:
+### Program parameters
 
 | Parameter     | Description         | Default Value                  | Acceptable                                             |
 | ------------- | ------------------- | ------------------------------ | ------------------------------------------------------ |
