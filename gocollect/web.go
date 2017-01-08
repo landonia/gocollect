@@ -161,7 +161,7 @@ func fuzzysearch(store *Store, w http.ResponseWriter, req *http.Request) {
   // Get the email param
   email := req.URL.Query().Get("email")
   ids, err := store.GetUserIDsMatchingFuzzyEmail(email)
-  if err != nil {
+  if err != nil || len(ids) == 0 {
   		w.WriteHeader(http.StatusNotFound)
       return
   }
