@@ -21,11 +21,11 @@ With a healthy Go Language installed, simply run `go get github.com/landonia/goc
 
 ### Program parameters:
 
-| Parameter     | Description             | Default Value                  | Acceptable                                             |
-| ------------- | ----------------------- | ------------------------------ | ------------------------------------------------------ |
-| db            | The path to the DB file | "/usr/local/gocollect/bolt.db" | A path to where you want the .db file to exist         |
-| addr          | The address to bind     | ":8080"                        | Any valid bind address                                 |
-| loglevel      | The log level           | "info"                         | "off","fatal","error","warn","info","debug","trace"    |
+| Parameter     | Description         | Default Value                  | Acceptable                                             |
+| ------------- | ------------------- | ------------------------------ | ------------------------------------------------------ |
+| db            | The DB file path    | "/usr/local/gocollect/bolt.db" | A path to where you want the .db file to exist         |
+| addr          | The address to bind | ":8080"                        | Any valid bind address                                 |
+| loglevel      | The log level       | "info"                         | "off","fatal","error","warn","info","debug","trace"    |
 
 ### Example
 
