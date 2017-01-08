@@ -38,7 +38,7 @@ func HandleHTTP(addr string, store *Store) {
 	// Add in a search handler that allows the users to be searched
 	r.HandleFunc("/users/search", newHandler(store, search)).Methods(http.MethodGet)
 
-  // Add in a fuzzysearch handler that allows the users to be searched using a part of the email
+	// Add in a fuzzysearch handler that allows the users to be searched using a part of the email
 	r.HandleFunc("/users/fuzzysearch", newHandler(store, fuzzysearch)).Methods(http.MethodGet)
 
 	// Add the new handler that will return the user
@@ -136,14 +136,14 @@ func getUser(store *Store, w http.ResponseWriter, req *http.Request) {
 // A query string param can be sent for each field to search
 func search(store *Store, w http.ResponseWriter, req *http.Request) {
 
-  // Get the email param
-  email := req.URL.Query().Get("email")
-  id, err := store.GetUserIDUsingEmail(email)
-  if err != nil {
-  		w.WriteHeader(http.StatusNotFound)
-      return
-  }
-  // Write the id to the stream
+	// Get the email param
+	email := req.URL.Query().Get("email")
+	id, err := store.GetUserIDUsingEmail(email)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+	// Write the id to the stream
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(fmt.Sprintf("{\"id\":%d}", id)))
@@ -151,33 +151,33 @@ func search(store *Store, w http.ResponseWriter, req *http.Request) {
 
 // SearchResult will be returned for any matching record IDs
 type SearchResult struct {
-  IDs []uint64 `json:"ids"`
+	IDs []uint64 `json:"ids"`
 }
 
 // fuzzysearch will search the fields for any matching records based on the bytes
 // that have been passed. So for example - "john.doe@"
 func fuzzysearch(store *Store, w http.ResponseWriter, req *http.Request) {
 
-  // Get the email param
-  email := req.URL.Query().Get("email")
-  ids, err := store.GetUserIDsMatchingFuzzyEmail(email)
-  if err != nil || len(ids) == 0 {
-  		w.WriteHeader(http.StatusNotFound)
-      return
-  }
+	// Get the email param
+	email := req.URL.Query().Get("email")
+	ids, err := store.GetUserIDsMatchingFuzzyEmail(email)
+	if err != nil || len(ids) == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
 
-  // Write the id to the stream
+	// Write the id to the stream
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-  if err = json.NewEncoder(w).Encode(SearchResult{ids}); err != nil {
-    logger.Error("Error formatting data: %s", err.Error())
-  }
+	if err = json.NewEncoder(w).Encode(SearchResult{ids}); err != nil {
+		logger.Error("Error formatting data: %s", err.Error())
+	}
 }
 
 func addUserEvent(store *Store, w http.ResponseWriter, req *http.Request) {
-  // TODO
+	// TODO
 }
 
 func getUserEvent(store *Store, w http.ResponseWriter, req *http.Request) {
-  // TODO
+	// TODO
 }
